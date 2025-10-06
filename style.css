@@ -1,0 +1,139 @@
+/* ---------- Reset & fonts ---------- */
+* { box-sizing: border-box; margin:0; padding:0; }
+:root{
+  --bg1: #0b1020;
+  --bg2: #111426;
+  --accent1: #6ee7b7;
+  --accent2: #7cc7ff;
+  --muted: rgba(255,255,255,0.7);
+  --glass: rgba(255,255,255,0.04);
+}
+html,body { height:100%; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:#fff; background: linear-gradient(180deg,var(--bg1),var(--bg2)); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden; }
+
+/* Canvas sits behind content */
+#bgCanvas { position:fixed; inset:0; z-index:0; }
+
+/* Main site container */
+.site { position:relative; z-index:2; }
+
+/* ---------- HERO ---------- */
+.hero { min-height: 72vh; display:flex; align-items:center; justify-content:space-between; gap:40px; padding:56px 6vw; max-width:1200px; margin:0 auto; }
+@media (max-width:900px){ .hero{ flex-direction:column-reverse; text-align:center; } .hero-right{ margin-bottom:20px; } }
+
+.hero-left { flex:1; max-width:66ch; }
+.name { font-family:'Space Grotesk',sans-serif; font-size:4.25rem; line-height:1; margin-bottom:12px; color:#fff; text-shadow: 0 6px 30px rgba(0,0,0,0.6); }
+.tagline { font-size:1.25rem; color:var(--muted); margin-bottom:20px; max-width:44ch; }
+
+/* CTAs */
+.hero-ctas { display:flex; gap:14px; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; justify-content:center; padding:12px 20px; border-radius:12px; font-weight:600; text-decoration:none; cursor:pointer; transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease; border:0; }
+.btn:hover{ transform: translateY(-4px); }
+.btn-primary { background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:#02202a; box-shadow: 0 8px 28px rgba(110,231,183,0.08); }
+.btn-outline { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.08); }
+
+/* PROFILE IMAGE */
+.hero-right { flex:0 0 320px; display:flex; align-items:center; justify-content:center; }
+.profile { width:260px; height:260px; object-fit:cover; border-radius:50%; border:6px solid transparent; box-shadow: 0 12px 38px rgba(2,8,23,0.6); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); }
+
+/* ---------- SECTIONS ---------- */
+.section { padding:82px 6vw; max-width:1200px; margin:0 auto; }
+.section-title { font-family:'Space Grotesk',sans-serif; font-size:2.25rem; margin-bottom:32px; color:#fff; }
+
+/* ---------- PROJECTS ---------- */
+.projects-grid { display:grid; gap:22px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top:12px; }
+.card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.03); transition: transform .25s ease, box-shadow .25s ease; display:flex; flex-direction:column; }
+.card:hover { transform: translateY(-10px); box-shadow: 0 35px 60px rgba(2,8,23,0.6); }
+.card-media img { width:100%; height:160px; object-fit:cover; display:block; }
+.card-body { padding:16px; display:flex; flex-direction:column; gap:8px; }
+.card-body h3 { margin:0; font-size:1.05rem; }
+.muted { color:var(--muted); font-size:0.95rem; }
+.tags { margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
+.tag { padding:6px 10px; background:var(--glass); border-radius:999px; font-size:0.82rem; color:var(--muted); border:1px solid rgba(255,255,255,0.02); }
+
+/* ---------- SKILLS ---------- */
+.skills-row { display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-start; }
+.skill-pill { padding:10px 14px; border-radius:999px; background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.03); color:var(--muted); font-weight:600; }
+
+/* center skills on small screens */
+@media (max-width:900px){ .skills-row{ justify-content:center; } }
+
+/* ---------- CONTACT ---------- */
+.contact-form { max-width:720px; width:100%; display:flex; flex-direction:column; gap:14px; }
+.contact-form input, .contact-form textarea {
+  padding:12px 14px; border-radius:10px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); color:#fff; resize:vertical;
+}
+.contact-form textarea { min-height:120px; }
+
+/* ---------- FOOTER ---------- */
+.footer { margin-top:10vh; }
+.footer-inner { display:flex; gap:20px; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:28px 6vw; border-top:1px solid rgba(255,255,255,0.03); color:var(--muted); }
+@media (max-width:700px){ .footer-inner{ flex-direction:column; gap:12px; text-align:center; } }
+.icon-link { color:var(--accent1); display:inline-flex; align-items:center; gap:8px; text-decoration:none; }
+
+/* ---------- Fade-in helper (JS will toggle .visible) ---------- */
+.fade-in { opacity:0; transform: translateY(20px); transition: opacity .9s ease, transform .9s ease; }
+.fade-in.visible { opacity:1; transform: translateY(0); }
+
+/* ---------- small responsive tweaks ---------- */
+@media (max-width:480px){
+  .name{ font-size:2.4rem; }
+  .profile{ width:180px; height:180px; }
+  .hero{ padding:36px 5vw; }
+}
+.repo-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #6ee7b7, #7cc7ff);
+  color: #0b1020;
+  padding: 8px 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.repo-btn:hover {
+  background: #6ee7b7;
+  transform: translateY(-2px);
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6); /* semi-transparent background */
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: #00f0ff; /* vibrant accent color */
+}
+
+/* For small screens, you can later add a hamburger menu */
+
